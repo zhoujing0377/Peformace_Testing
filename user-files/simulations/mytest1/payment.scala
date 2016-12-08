@@ -13,6 +13,14 @@ class payUser extends Simulation {
 
   val targetHost = "https://estore-dev-bce.mercedes-benz.com.cn/"
 
+  /**
+    *
+    * @param reservationId  order reservationId
+    * @param limitPay alipay or wechat
+    * @param dealerCode dealerCode for payment mapping
+    * @param intentionFee
+    * @return
+    */
   def payApply(reservationId: String, limitPay: String, dealerCode: String, intentionFee: Double): String = {
     val orderPayRequest: PayMentBean = new PayMentBean
     orderPayRequest.setService("pay.auth.pay.apply")
