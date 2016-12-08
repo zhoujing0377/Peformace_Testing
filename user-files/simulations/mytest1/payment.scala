@@ -31,7 +31,7 @@ class payUser extends Simulation {
     * @param limitPay alipay or wechat
     * @param dealerCode dealerCode for payment mapping
     * @param intentionFee
-    * @return
+    * @return pay request url
     */
   def payApply(reservationId: String, limitPay: String, dealerCode: String, intentionFee: Double): String = {
     val orderPayRequest: PayMentBean = new PayMentBean
