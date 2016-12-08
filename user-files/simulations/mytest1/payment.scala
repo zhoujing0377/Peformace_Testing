@@ -1,4 +1,16 @@
+import scala.concurrent.duration._
 
+import io.gatling.core.Predef._
+import io.gatling.http.Predef._
+import io.gatling.jdbc.Predef._
+import io.gatling.core.feeder._
+import com.pay.api.PayClient
+import com.pay.api.bean.request.PayMentBean
+import com.pay.api.bean.request.ProrateBean
+import com.pay.api.bean.request.RefundBean
+import com.pay.api.bean.response.PayMentResponse
+import com.pay.api.bean.response.ProrateResponse
+import com.pay.api.bean.response.RefundResponse
 
 
 // rampTo100Users5s
