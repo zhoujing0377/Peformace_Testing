@@ -22,6 +22,8 @@ class payUser extends Simulation {
 
   val targetHost = "https://estore-preprod.mercedes-benz.com.cn"
 
+  val feeder = csv("accounts.csv").random
+  val product = csv("products.csv").random
   /**
     *
     * @param reservationId order reservationId
@@ -75,7 +77,29 @@ class payUser extends Simulation {
   }
 
   val payAndRefundScn = scenario("payment pay and refund test")
-
+    .feed(feeder)
+    .feed(product)
+    .exec(http("Login")
+      .post("/api/ecommerce/user/login")
+      .headers(headers_login)
+      .body(StringBody("""{ "mobile":"${mobile}","password":"${password}" }"""))
+      .check(header("MME-TOKEN").saveAs("token"))
+      .check(regex(""""id":"([^"]*)""").saveAs("user_id"))
+      .resources()
+      )
+    .exec(http("CREATE_Order")
+      .post("/api/ecommerce/customers/${user_id}/orders")
+      .headers(headers_login)
+      .body(StringBody("""{ "contactName":"${username}","contactMobile":"${mobile}","productId":"${product_id}","dealerId":"${dealer_id}","giftId":279,"financialPlanTerm":null,"financialPlanDownpayment":null,"financialPlanBalloonpayment":null,"financialPlanMonthlyPayment":null }"""))
+      .headers(headers_with_token)
+      .resources()
+    )
+    .exec(http("GET_ORDER_LIST")
+      .get("/api/ecommerce/customers/${user_id}/orders")
+      .headers(headers_with_token)
+      .check(regex(""""reservationId":"([^"]*)""").saveAs("reservation_id"))
+      .resources()
+    )    
     .exec(http("Payment")
     .post("/api/ecommerce/customers/${user_id}/orders/${reservation_id}/payment")
     .headers(headers_login)
@@ -84,21 +108,21 @@ class payUser extends Simulation {
     .resources()
 
     .exec(http("payment payApply")
-      .get(payApply("1234566744332", "alipay", "Admin", 0.01))
+      .get(payApply("${reservation_id}", "alipay", "Admin", 0.01))
     )
     .pause(1)
     .exec(session => {
-      val refundRes = refund("1234566744332")
+      val refundRes = refund("${reservation_id}")
       session.set("refundRes", refundRes)
     })
 
   val payAndProrateScn = scenario("payment pay and prorate test")
     .exec(http("payment payApply")
-      .get(payApply("1234566744332", "alipay", "Admin", 0.01))
+      .get(payApply("${reservation_id}", "alipay", "Admin", 0.01))
     )
     .pause(1)
     .exec(session => {
-      val prorateRes = prorate("1234566744332")
+      val prorateRes = prorate("${reservation_id}")
       session.set("prorateRes", prorateRes)
     })
 

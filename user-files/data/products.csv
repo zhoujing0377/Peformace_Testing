@@ -1,8 +1,7 @@
-product_id,exterior_id,interior_id,optional_pkg_id,single_pkg_id,wheel_id,dealer_id
-1596,197,131,null,null,66R,170
-1596,197,131,null,null,66R,171
-1596,197,131,null,null,66R,172
-1596,197,131,null,null,66R,173
-1596,197,131,null,null,66R,174
-1596,197,131,null,null,66R,175
-
+product_id,dealer_id,gift_id
+2855,257,299
+2855,257,300
+2945,257,299
+2945,257,300
+3085,257,299
+3085,257,300
