@@ -8,7 +8,7 @@ import io.gatling.core.feeder._
 
 class singleMmeUserLogin extends Simulation {
 	val httpProtocol = http
-		.baseURL("https://estore.mercedes-benz.com.cn")
+		.baseURL("https://estore-int01.mercedes-benz.com.cn")
 		.inferHtmlResources(BlackList(""".*\.js""", """.*\.css""", """.*\.gif""", """.*\.jpeg""", """.*\.jpg""", """.*\.ico""", """.*\.woff""", """.*\.(t|o)tf""", """.*\.png"""), WhiteList())
 		.acceptHeader("application/json, text/plain, */*")
 		.acceptEncodingHeader("gzip, deflate, sdch")

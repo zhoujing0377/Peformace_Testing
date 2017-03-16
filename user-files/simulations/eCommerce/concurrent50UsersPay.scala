@@ -141,6 +141,6 @@ class concurrent50UsersPay extends Simulation {
    .pause(3)
    .exec(http("Pay callback")
       .post("https://pay.beautyyan.cn/paytest/payment/notifyH5Test_url.do?payer_user_id=zzz2134d546234sd&out_trade_no=${reservation_id}&trade_no=2014112400001000340011111118&trade_status=TRADE_SUCCESS&total_fee=4999")
-
+      )
    setUp(payAndRefundScn.inject(atOnceUsers(50))).protocols(httpProtocol)
 }

@@ -6,7 +6,7 @@ import io.gatling.http.Predef._
 import io.gatling.jdbc.Predef._
 import io.gatling.core.feeder._
 
-class DCP100ConcurrentUsersLogin extends Simulation {
+class DCP1ConcurrentUsersLogin extends Simulation {
 	val httpProtocol = http
 		// .baseURL("https://shop.mercedes-benz.com")
 		.baseURL("https://login.secure.mercedes-benz.com")
@@ -22,7 +22,7 @@ class DCP100ConcurrentUsersLogin extends Simulation {
 
 	val feeder = csv("ciam_accounts.csv").random
 
-	val scn = scenario("100 concurrent users login to dcp/ciam site")
+	val scn = scenario("1 concurrent user login to dcp/ciam site")
 
 		.feed(feeder)
 		.exec(http("Login")
@@ -36,6 +36,6 @@ class DCP100ConcurrentUsersLogin extends Simulation {
 			// .resources()
 	  	)
 
-	setUp(scn.inject(atOnceUsers(500))).protocols(httpProtocol)
+	setUp(scn.inject(atOnceUsers(1))).protocols(httpProtocol)
 	
 }
