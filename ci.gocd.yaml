@@ -1,0 +1,27 @@
+pipelines:
+  API-PERFORMANCE-TESTING:
+    group: mbe
+    timer:
+      only_on_changes: yes
+      spec: "* * * * * ?"
+    materials:
+      mygit:
+        git: https://117.121.110.36/daimler-mme/Performance_testing.git
+        branch: master
+    stages:
+      - Run:
+          jobs:
+            Run:
+              tasks:
+                - exec:
+                    command: bash
+                    arguments:
+                      - gatling.sh
+                    working_directory: bin
+                    run_if: passed
+              artifacts:
+                - test:
+                    source: results/
+                    destination:
+              tabs:
+                Report: results/*/index.html
