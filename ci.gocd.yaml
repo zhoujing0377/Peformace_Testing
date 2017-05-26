@@ -1,5 +1,5 @@
 pipelines:
-  API-PERFORMANCE-TESTING:
+  API-Performance-Testing:
     group: mbe
     timer:
       only_on_changes: yes
