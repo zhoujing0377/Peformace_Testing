@@ -68,7 +68,7 @@ object CiamLoginStep {
             new ResponseWrapper(response) {
               override val body = new StringResponseBody(
                 s"""{
-                  |"accessToken":"$accessToken",
+                  |"accessToken":"bearer $accessToken",
                   |"cid":"$cid"
                   |}
                 """.stripMargin, UTF_8)

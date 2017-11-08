@@ -7,16 +7,33 @@
 			<immediateFlush>false</immediateFlush>
 		</encoder>
 	</appender>
+	<appender name="FILE" class="ch.qos.logback.core.FileAppender">
+		<file>../debug.log</file>
+		<append>true</append>
+		<encoder>
+			<pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+		</encoder>
+	</appender>
 
 	<!-- Uncomment for logging ALL HTTP request and responses -->
-	<!-- 	<logger name="io.gatling.http.ahc" level="TRACE" /> -->
-	<!--    <logger name="io.gatling.http.response" level="TRACE" /> -->
-	<!-- Uncomment for logging ONLY FAILED HTTP request and responses -->
-	<!-- 	<logger name="io.gatling.http.ahc" level="DEBUG" /> -->
-	<!--    <logger name="io.gatling.http.response" level="DEBUG" /> -->
+	 	<!--<logger name="io.gatling.http.ahc" level="TRACE" additivity="false">-->
+			<!--<appender-ref ref="FILE" />-->
+		<!--</logger>-->
+	    <!--<logger name="io.gatling.http.response" level="TRACE" additivity="false">-->
+			<!--<appender-ref ref="FILE" />-->
+		<!--</logger>-->
 
-	<root level="WARN">
-		<appender-ref ref="CONSOLE" />
-	</root>
+
+		<!-- Uncomment for logging ONLY FAILED HTTP request and responses -->
+		<logger name="io.gatling.http.ahc" level="DEBUG" additivity="false">
+			<appender-ref ref="FILE" />
+		</logger>
+		<logger name="io.gatling.http.response" level="DEBUG" additivity="false">
+			<appender-ref ref="FILE" />
+		</logger>
+
+		<root level="WARN" additivity="false">
+			<appender-ref ref="CONSOLE" />
+		</root>
 
 </configuration>
