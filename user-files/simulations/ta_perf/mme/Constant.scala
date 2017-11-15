@@ -12,4 +12,5 @@ object Constant {
     .disableCaching
 
   val mmeHost = "https://estore-preprod.mercedes-benz.com.cn/"
+  //val mmeHost = "https://estore.mercedes-benz.com.cn/"
 }

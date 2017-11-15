@@ -56,7 +56,7 @@ val scn = scenario("single user comes to ecommerce for data quantity cases")
             )
 
     .exec(http("50_DEALERS_GET")
-            .get(mmeHost + "api/ecommerce/customers/dealers?city=Beijing&sku=1ea348b8-571f-45bd-b2b7-ffd5016c36b7")
+            .get(mmeHost + "api/ecommerce/customers/dealers?city=Beijing&sku=c31ca561-8a9c-4622-90a3-83b1ee7ac871")
             .headers(dcpApiHeader)
             .headers(headers_with_token)
             )

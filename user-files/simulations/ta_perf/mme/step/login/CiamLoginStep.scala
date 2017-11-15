@@ -14,6 +14,8 @@ object CiamLoginStep {
 
   val ciamConsentUrl = "https://api-test.secure.mercedes-benz.com/oidc10/auth/oauth/v2/authorize/consent"
   val loginUrl = "https://login-test.secure.mercedes-benz.com/wl/login"
+  //val ciamConsentUrl = "https://api.secure.mercedes-benz.com/oidc10/auth/oauth/v2/authorize/consent"
+  //val loginUrl = "https://login.secure.mercedes-benz.com/wl/login"
 
 
   val dcpLoginHeader = Map(
@@ -33,7 +35,7 @@ object CiamLoginStep {
       .check(currentLocationRegex("""app-id=([^&]*)""").saveAs("appId"))
     )
       .pause(1)
-      .feed(csv("users.csv"))
+      .feed(csv("prod_users.csv"))
       .exec(http("Login Post")
         .post(loginUrl)
         .headers(dcpLoginHeader)

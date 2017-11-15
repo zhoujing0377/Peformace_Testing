@@ -10,5 +10,5 @@ class CiamLogin extends Simulation {
   val scn = scenario("Login and GetCurrentUser and Logout")
     .exec(CiamLoginStep.login,CiamLogoutStep.logout)
 
-  setUp(scn.inject(atOnceUsers(40))).protocols(httpProtocol)
+  setUp(scn.inject(atOnceUsers(15))).protocols(httpProtocol)
 }

@@ -38,12 +38,12 @@ val scn = scenario("500 users comes to ecommerce for data quantity cases")
             )
 
     .exec(http("PDP_E300sports_PRODUCTS_GET")
-            .get(mmeHost +"api/ecommerce/customers/products?query=%3Aprice-asc%3Acity%3ABeijing%3Amodel%3A21304810-CBA")
+            .get(mmeHost +"api/ecommerce/customers/products?query=%3Aprice-asc%3Acity%3ABeijing%3Amodel%3A21314210-CBA")
             .headers(dcpApiHeader)
             )
 
     .exec(http("PDP_E300sports_ATTRIBUTES_GET")
-            .get(mmeHost + "api/ecommerce/customers/vehicles/spus?model=21304810-CBA")
+            .get(mmeHost + "api/ecommerce/customers/vehicles/spus?model=21314210-CBA")
             .headers(dcpApiHeader)
             )
 /*
