@@ -12,6 +12,8 @@ pipelines:
       - Run:
           jobs:
             Run:
+              resources:
+                - sbt
               tasks:
                 - exec:
                     command: bash
